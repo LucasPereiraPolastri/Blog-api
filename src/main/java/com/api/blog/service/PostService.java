@@ -21,4 +21,6 @@ public interface PostService {
 
     ComentarioResponseDto addComentario(UUID postId, ComentarioRequestDto dto);
 
+    ComentarioResponseDto updateComentario(UUID Id, ComentarioRequestDto dto);
+
 }

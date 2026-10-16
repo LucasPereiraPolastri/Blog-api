@@ -110,5 +110,17 @@ public class PostServiceImpl implements PostService {
         return comentarioMapper.toDto(saved);
 
     }
+    @Override
+    @Transactional
+    public ComentarioResponseDto updateComentario(UUID comentarioId, ComentarioRequestDto dto){
+        ComentarioModel comentario = comentarioRepository.findById(comentarioId).orElseThrow();
+
+        comentario.setComentario(dto.comentario());
+
+        ComentarioModel updated = comentarioRepository.save(comentario);
+
+        return comentarioMapper.toDto(updated);
+    }
 
 }
+

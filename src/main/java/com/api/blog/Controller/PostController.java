@@ -4,6 +4,7 @@ import com.api.blog.dto.request.ComentarioRequestDto;
 import com.api.blog.dto.request.PostRequestDto;
 import com.api.blog.dto.response.ComentarioResponseDto;
 import com.api.blog.dto.response.PostResponseDto;
+import com.api.blog.repository.PostRepository;
 import com.api.blog.service.PostService;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
@@ -46,5 +47,22 @@ public class    PostController {
             return ResponseEntity.status(HttpStatus.CREATED).body(
                     postService.addComentario(postId, dto));
     }
+    @DeleteMapping("posts/{postId}")
+    public ResponseEntity<Void> deletePost (@PathVariable UUID postId){
+            postService.deletePost(postId);
+            return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping("comentarios/{postId}")
+    public ResponseEntity<Void> deleteComentario(@PathVariable UUID comentarioId){
+            postService.deletePost(comentarioId);
+            return ResponseEntity.noContent().build();
+    }
+    @PutMapping("comentarios/{postId}")
+    public ResponseEntity<ComentarioResponseDto> updateComentario(@PathVariable UUID comentarioId,
+                                                                  @RequestBody @Valid ComentarioRequestDto dto){
+            ComentarioResponseDto updated = postService.updateComentario(comentarioId,dto);
+            return ResponseEntity.ok(updated);
+    }
+
 
 }
