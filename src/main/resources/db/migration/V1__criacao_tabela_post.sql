@@ -1,0 +1,7 @@
+CREATE TABLE tb_post (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    conteudo TEXT NOT NULL,
+    autor VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
