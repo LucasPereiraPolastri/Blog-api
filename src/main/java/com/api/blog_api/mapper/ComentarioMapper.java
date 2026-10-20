@@ -8,23 +8,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ComentarioMapper {
-    public ComentarioModel toEntity(ComentarioRequestDto dto, PostModel entity){
-        if (dto == null){
+
+    public ComentarioModel toEntity(ComentarioRequestDto dto, PostModel post) {
+        if (dto == null) {
             return null;
         }
         return new ComentarioModel(
-                dto.comentario().toString(),
-                entity);
+                dto.comentario(),
+                dto.autor(),      // ← precisa existir no RequestDto
+                post
+        );
     }
 
-    public ComentarioResponseDto toDto(ComentarioModel entity){
-        if (entity == null){
+    public ComentarioResponseDto toDto(ComentarioModel entity) {
+        if (entity == null) {
             return null;
         }
         return new ComentarioResponseDto(
                 entity.getId(),
                 entity.getData(),
-                entity.getComentario()
+                entity.getComentario(),
+                entity.getAutor()   // ← precisa existir no ResponseDto
         );
     }
 }

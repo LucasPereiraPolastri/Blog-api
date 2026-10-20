@@ -1,0 +1,3 @@
+ALTER TABLE tb_post
+    CHANGE COLUMN conteudo texto TEXT NOT NULL,
+    ADD COLUMN data DATE NOT NULL AFTER id;

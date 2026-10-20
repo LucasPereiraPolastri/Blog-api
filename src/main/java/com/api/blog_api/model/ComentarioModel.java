@@ -1,45 +1,43 @@
 package com.api.blog_api.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_comentario")
 public class ComentarioModel {
 
-    private static final long serialversionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private LocalDate data;
 
-    @Lob
     @Column(columnDefinition = "TEXT", nullable = false)
     private String comentario;
+
+    @Column(nullable = false)
+    private String autor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
     private PostModel post;
 
-    public ComentarioModel(){}
+    public ComentarioModel() {}
 
-    public ComentarioModel(String comentario, PostModel post){
+    public ComentarioModel(String comentario, String autor, PostModel post) {
         this.comentario = comentario;
+        this.autor = autor;
         this.post = post;
         this.data = LocalDate.now();
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -57,6 +55,14 @@ public class ComentarioModel {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public PostModel getPost() {

@@ -1,5 +1,5 @@
 CREATE TABLE tb_comentario (
-    id BINARY(16) NOT NULL AUTO_INCREMENT,
+    id BIGINT NOT NULL AUTO_INCREMENT,
     texto TEXT NOT NULL,
     autor VARCHAR(255) NOT NULL,
     post_id BIGINT NOT NULL,

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 public record PostResponseDto(
-    UUID id,
+    long id,
     String autor,
     LocalDate data,
     String titulo,

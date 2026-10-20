@@ -7,18 +7,23 @@ import com.api.blog_api.dto.response.PostResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-import java.util.UUID;
-
 public interface PostService {
-    // List<PostResponseDto> findAll();
+
     Page<PostResponseDto> findAll(Pageable pageable);
+
     Page<PostResponseDto> findAll(Pageable pageable, String titulo);
-    PostResponseDto findById(UUID id);
+
+    PostResponseDto findById(Long id);
+
     PostResponseDto createPost(PostRequestDto dto);
-    ComentarioResponseDto addComentario(UUID postId, ComentarioRequestDto dto);
-    void deletePost(UUID id);
-    PostResponseDto updatePost(UUID id, PostRequestDto dto);
-    void deleteComentario(UUID id);
-    ComentarioResponseDto updateComentario(UUID id, ComentarioRequestDto dto);
+
+    ComentarioResponseDto addComentario(Long postId, ComentarioRequestDto dto);
+
+    void deletePost(Long id);
+
+    PostResponseDto updatePost(Long id, PostRequestDto dto);
+
+    void deleteComentario(Long id);
+
+    ComentarioResponseDto updateComentario(Long id, ComentarioRequestDto dto);
 }
